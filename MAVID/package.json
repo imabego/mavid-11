@@ -1,0 +1,9 @@
+{
+  "name": "mavid",
+  "version": "1.0.0",
+  "description": "MAVID - Marketing Luxe Kinshasa",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  }
+}
