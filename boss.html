@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Boss - MAVID</title>
+<style>body{font-family:Arial;padding:20px} .box{background:#000;color:#fff;padding:20px;border-radius:15px;text-align:center;margin:10px 0} .card{background:#f5f5f5;padding:12px;border-radius:10px;margin:8px 0}</style></head>
+<body>
+<h1>👑 Dashboard BOSS - MAVID</h1>
+<a href="index.html">← Retour boutique</a>
+<div class="box"><h2 id="total">0 Produits</h2><p>Total produits sur MAVID</p></div>
+<div class="box" style="background:#25D366"><h2 id="vendeurs">0 Vendeurs</h2><p>Vendeurs actifs</p></div>
+<h3>Tous les produits :</h3><div id="list"></div>
+<button onclick="localStorage.removeItem('mavid_products');location.reload()" style="padding:12px;background:red;color:#fff;border:none;border-radius:10px">Effacer tout</button>
+<script>
+let all=JSON.parse(localStorage.getItem('mavid_products')||'[]');
+document.getElementById('total').innerText=all.length+' Produits';
+let noms=[...new Set(all.map(x=>x.vendeur))];
+document.getElementById('vendeurs').innerText=noms.length+' Vendeurs';
+document.getElementById('list').innerHTML=all.map(x=>`<div class="card"><b>${x.nom}</b> - ${x.prix}$ - ${x.commune}<br>Vendeur: ${x.vendeur} - WhatsApp: ${x.whatsapp}</div>`).join('')||'Aucun produit pour le moment';
+</script></body></html>
