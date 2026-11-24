@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vendeur - MAVID</title>
+<style>body{font-family:Arial;padding:20px;background:#fff} input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ddd;border-radius:10px} button{width:100%;padding:15px;background:#000;color:#fff;border:none;border-radius:10px;font-size:18px}</style></head>
+<body>
+<h1>🛍️ Espace Vendeur MAVID</h1>
+<a href="index.html">← Retour boutique</a><br><br>
+<input id="vendeur" placeholder="Ton nom / nom boutique">
+<input id="whatsapp" placeholder="Ton WhatsApp ex: 810000000">
+<input id="nom" placeholder="Nom du produit ex: Robe">
+<input id="prix" type="number" placeholder="Prix en $">
+<input id="commune" placeholder="Commune ex: Gombe, Bandal">
+<input id="img" placeholder="Lien photo du produit">
+<button onclick="ajouter()">Publier mon produit ✅</button>
+<p id="msg"></p>
+<h3>Mes produits publiés :</h3><div id="mes"></div>
+<script>
+function ajouter(){
+  let p={vendeur:document.getElementById('vendeur').value, whatsapp:document.getElementById('whatsapp').value, nom:document.getElementById('nom').value, prix:document.getElementById('prix').value, commune:document.getElementById('commune').value, img:document.getElementById('img').value};
+  if(!p.nom||!p.prix){alert('Mets nom + prix');return;}
+  let all=JSON.parse(localStorage.getItem('mavid_products')||'[]'); all.push(p); localStorage.setItem('mavid_products',JSON.stringify(all));
+  document.getElementById('msg').innerText='Produit publié ! ✅ Va voir sur la page client.';
+  afficher();
+}
+function afficher(){ let all=JSON.parse(localStorage.getItem('mavid_products')||'[]'); document.getElementById('mes').innerHTML = all.map(x=>'<p>✅ '+x.nom+' - '+x.prix+'$</p>').join(''); }
+afficher();
+</script></body></html>
